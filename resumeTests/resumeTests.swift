@@ -25,6 +25,19 @@ class resumeTests: XCTestCase {
         // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
         // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
     }
+    
+    func testImageSaveLoad() async throws {
+        let image = UIImage(named: "noimage_png")
+        let imageData = image!.size
+        let handler = ImageSLHandler()
+        
+        await handler.saveTo("test.png", with: image!)
+        let loadImage = await handler.loadFrom("test.png")
+        XCTAssertEqual(imageData, loadImage!.size)
+        let failed = await handler.loadFrom("fail.png")
+        XCTAssertNil(failed)
+        
+    }
 
     func testPerformanceExample() throws {
         // This is an example of a performance test case.
