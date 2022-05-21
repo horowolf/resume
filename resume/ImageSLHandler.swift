@@ -13,9 +13,11 @@ struct ImageSLHandler {
         guard let data = image.jpegData(compressionQuality: 1) ?? image.pngData() else {
             return false
         }
+        
         guard let directory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) else {
             return false
         }
+        
         do {
             try data.write(to: directory.appendingPathComponent(subpath))
             return true
@@ -29,6 +31,7 @@ struct ImageSLHandler {
         guard let directory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) else {
             return nil
         }
+        
         let pathURL = directory.appendingPathComponent(subpath)
         return UIImage(contentsOfFile: pathURL.path)
     }

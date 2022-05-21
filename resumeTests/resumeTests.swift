@@ -36,7 +36,23 @@ class resumeTests: XCTestCase {
         XCTAssertEqual(imageData, loadImage!.size)
         let failed = await handler.loadFrom("fail.png")
         XCTAssertNil(failed)
+    }
+    
+    func testResumeSLHandler() async throws {
+        let summary = [WorkSummary(company: "Apple", duration: "2001/1-2007/12")]
+        let skill = [Skill(skill: "Swfit")]
+        let education = [Education(school: "Tokyo University", passingYear: 2000, CGPA: 3.9)]
+        let project = [Project(name: "App", teamSize: 10, summary: "Very good", usedTech: "Swift", role: "Engineer")]
         
+        let resume = ResumeModel(photoName: "a.png", mobile: "080-0000-0000", email: "test@gmail.com", address: "Tokyo", objective: "I'm an engineer.", yearOfExperience: 10, workSummary: summary, skills: skill, education: education, projects: project)
+        
+        let handler = ResumeSLHandler()
+        
+        await handler.save(resume)
+        let loadData = await handler.load()
+        XCTAssertEqual(resume, loadData)
+        let failed = ResumeModel(photoName: "a.png", mobile: "080-0000-0000", email: "test@gmail.com", address: "Tokyo", objective: "Failed data", yearOfExperience: 10, workSummary: summary, skills: skill, education: education, projects: project)
+        XCTAssertNotEqual(failed, loadData)
     }
 
     func testPerformanceExample() throws {
@@ -46,4 +62,12 @@ class resumeTests: XCTestCase {
         }
     }
 
+}
+
+extension ResumeModel: Equatable {
+    public static func ==(lhs: Self, rhs: Self) -> Bool {
+        let left = try! JSONEncoder().encode(lhs)
+        let right = try! JSONEncoder().encode(rhs)
+        return left == right
+    }
 }
