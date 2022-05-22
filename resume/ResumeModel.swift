@@ -8,37 +8,37 @@
 import Foundation
 
 struct ResumeModel: Codable {
-    let photoName: String
-    let mobile: String
-    let email: String
-    let address: String
-    let objective: String
-    let yearOfExperience: Int
-    let workSummary: [WorkSummary]
-    let skills: [Skill]
-    let education: [Education]
-    let projects: [Project]
+    var photoName: String
+    var mobile: String
+    var email: String
+    var address: String
+    var objective: String
+    var yearOfExperience: Int
+    var workSummary: [WorkSummary]
+    var skills: [Skill]
+    var education: [Education]
+    var projects: [Project]
 }
 
 struct WorkSummary: Codable {
-    let company: String
-    let duration: String
+    var company: String
+    var duration: String
 }
 
 struct Skill: Codable {
-    let skill: String
+    var skill: String
 }
 
 struct Education: Codable {
-    let school: String // Not sure the "class" means
-    let passingYear: Int
-    let CGPA: Double
+    var school: String // Not sure the "class" means
+    var passingYear: Int
+    var CGPA: Double
 }
 
 struct Project: Codable {
-    let name: String
-    let teamSize: Int
-    let summary: String
-    let usedTech: String
-    let role: String
+    var name: String
+    var teamSize: Int
+    var summary: String
+    var usedTech: String
+    var role: String
 }

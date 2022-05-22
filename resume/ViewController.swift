@@ -10,49 +10,35 @@ import UIKit
 class ViewController: UIViewController {
     
     @IBOutlet weak var image: UIImageView!
+    @IBOutlet weak var scrollView: UIScrollView!
+    var resume = ResumeSLHandler().getDefaultValue()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        scrollView.isScrollEnabled = true
         image.image = UIImage(named: "noimage_png")
-    }
-    
-    @IBAction func pickImage(_ sender: Any) {
-        let controller = UIImagePickerController()
-        controller.sourceType = .photoLibrary
-        self.present(controller, animated: true)
-        controller.delegate = self
-    }
-    
-    @IBAction func loadImage(_ sender: Any) {
-        Task.detached {
-            let load = await ImageSLHandler().loadFrom("a.png")
-            if let img = load {
-                await MainActor.run {
-                    self.image.image = img
+        Task {
+            if let resumeData = await ResumeSLHandler().load() {
+                resume = resumeData
+                if let loadedImage = await ImageSLHandler().loadFrom(resume.photoName) {
+                    image.image = loadedImage
                 }
+                // TODO: Other data
+                
             }
         }
     }
-}
-
-extension ViewController: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let image = info[.originalImage] as? UIImage {
-            view.layoutIfNeeded()
-            self.image.image = image
-            self.image.isHidden = false
-            
-            Task.detached {
-                await ImageSLHandler().saveTo("a.png", with: image)
+    
+    @IBAction func editResume(_ sender: Any) {
+        performSegue(withIdentifier: "toEdit", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toEdit" {
+            if let editVC = segue.destination as? EditController {
+                editVC.resume = self.resume
             }
         }
-        else {
-            let controller = UIAlertController(title: "Failed", message: "Can not fetch image", preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-            controller.addAction(okAction)
-            present(controller, animated: true, completion: nil)
-        }
-        picker.dismiss(animated: true, completion: nil)
     }
 }

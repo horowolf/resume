@@ -8,6 +8,10 @@
 import Foundation
 
 struct ResumeSLHandler {
+    func getDefaultValue() -> ResumeModel {
+        ResumeModel(photoName: "", mobile: "", email: "", address: "", objective: "", yearOfExperience: 0, workSummary: [], skills: [], education: [], projects: [])
+    }
+    
     func save(_ resume: ResumeModel) async -> Bool {
         guard let directory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) else {
             return false

@@ -17,6 +17,7 @@
 		1207B6352838AACB00B98FFC /* ImageSLHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1207B6342838AACB00B98FFC /* ImageSLHandler.swift */; };
 		12FE9474283968BB0045F830 /* ResumeSLHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FE9473283968BB0045F830 /* ResumeSLHandler.swift */; };
 		12FE9476283968D80045F830 /* ResumeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FE9475283968D80045F830 /* ResumeModel.swift */; };
+		12FE94782839B8600045F830 /* EditController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FE94772839B8600045F830 /* EditController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +44,7 @@
 		1207B6342838AACB00B98FFC /* ImageSLHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSLHandler.swift; sourceTree = "<group>"; };
 		12FE9473283968BB0045F830 /* ResumeSLHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResumeSLHandler.swift; sourceTree = "<group>"; };
 		12FE9475283968D80045F830 /* ResumeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResumeModel.swift; sourceTree = "<group>"; };
+		12FE94772839B8600045F830 /* EditController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +89,7 @@
 				12074C1B2836AF3C00BC5797 /* AppDelegate.swift */,
 				12074C1D2836AF3C00BC5797 /* SceneDelegate.swift */,
 				12074C1F2836AF3C00BC5797 /* ViewController.swift */,
+				12FE94772839B8600045F830 /* EditController.swift */,
 				1207B6342838AACB00B98FFC /* ImageSLHandler.swift */,
 				12FE9473283968BB0045F830 /* ResumeSLHandler.swift */,
 				12FE9475283968D80045F830 /* ResumeModel.swift */,
@@ -207,6 +210,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12FE94782839B8600045F830 /* EditController.swift in Sources */,
 				12074C202836AF3C00BC5797 /* ViewController.swift in Sources */,
 				12FE9474283968BB0045F830 /* ResumeSLHandler.swift in Sources */,
 				12074C1C2836AF3C00BC5797 /* AppDelegate.swift in Sources */,
