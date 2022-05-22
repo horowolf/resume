@@ -18,6 +18,9 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
         scrollView.isScrollEnabled = true
         image.image = UIImage(named: "noimage_png")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         Task {
             if let resumeData = await ResumeSLHandler().load() {
                 resume = resumeData

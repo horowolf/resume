@@ -19,7 +19,7 @@
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="owI-vv-GQG">
                                 <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                                 <items>
-                                    <navigationItem title="Title" id="9nW-fL-alR">
+                                    <navigationItem title="Resume" id="9nW-fL-alR">
                                         <barButtonItem key="rightBarButtonItem" style="plain" id="thR-70-gnd">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="3iY-S3-2lI">
                                                 <rect key="frame" x="302" y="5" width="92" height="34.5"/>
@@ -99,7 +99,7 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
-                                    <navigationItem title="Title" id="45n-fZ-ZY0">
+                                    <navigationItem title="Editing" id="45n-fZ-ZY0">
                                         <barButtonItem key="leftBarButtonItem" style="plain" id="CMT-D1-48i">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="FDJ-aS-sa0">
                                                 <rect key="frame" x="20" y="5" width="92" height="34.5"/>
@@ -107,7 +107,7 @@
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="Back"/>
                                                 <connections>
-                                                    <segue destination="e2v-iz-qnb" kind="unwind" unwindAction="unwindFor:towards:" id="Y54-6F-1Px"/>
+                                                    <action selector="backToResume:" destination="A2E-Iz-nXp" eventType="touchUpInside" id="gGC-AX-nsT"/>
                                                 </connections>
                                             </button>
                                         </barButtonItem>
@@ -117,6 +117,9 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="Save"/>
+                                                <connections>
+                                                    <action selector="saveReusme:" destination="A2E-Iz-nXp" eventType="touchUpInside" id="T9I-Xx-Lmw"/>
+                                                </connections>
                                             </button>
                                         </barButtonItem>
                                     </navigationItem>
@@ -226,21 +229,37 @@
                                 <rect key="frame" x="247.5" y="514" width="146.5" height="31"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="gray" title="0 work record"/>
+                                <connections>
+                                    <action selector="addWork:" destination="A2E-Iz-nXp" eventType="touchUpInside" id="KTf-jy-9AG"/>
+                                    <segue destination="iFI-YB-AKo" kind="show" identifier="toWorkSummary" id="WsT-Ft-o2t"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Phx-5A-gBj">
                                 <rect key="frame" x="247.5" y="592" width="146.5" height="31"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="gray" title="0 education record"/>
+                                <connections>
+                                    <action selector="addEducation:" destination="A2E-Iz-nXp" eventType="touchUpInside" id="rLc-gl-fVd"/>
+                                    <segue destination="iFI-YB-AKo" kind="show" identifier="toEducation" id="BAb-vc-tBI"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nDw-fy-aOJ">
                                 <rect key="frame" x="247.5" y="631" width="146.5" height="31"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="gray" title="0 project"/>
+                                <connections>
+                                    <action selector="addProject:" destination="A2E-Iz-nXp" eventType="touchUpInside" id="yUg-rG-YTa"/>
+                                    <segue destination="iFI-YB-AKo" kind="show" identifier="toProject" id="mBH-ar-h8W"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DTl-Fm-gMz">
                                 <rect key="frame" x="247.5" y="553" width="146.5" height="31"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="gray" title="0 skill"/>
+                                <connections>
+                                    <action selector="addSkill:" destination="A2E-Iz-nXp" eventType="touchUpInside" id="UiT-ha-y6s"/>
+                                    <segue destination="iFI-YB-AKo" kind="show" identifier="toSkill" id="E2n-Mw-Y25"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="H1a-y4-DpE"/>
@@ -309,15 +328,108 @@
                     </view>
                     <navigationItem key="navigationItem" id="d8z-OE-OGx"/>
                     <connections>
+                        <outlet property="addressTextField" destination="rrJ-9L-Gqq" id="ECm-uY-amt"/>
+                        <outlet property="educationButton" destination="Phx-5A-gBj" id="x6I-xG-Pgo"/>
+                        <outlet property="emailTextField" destination="wJ2-P0-AMK" id="7hn-eS-Os8"/>
+                        <outlet property="mobileTextField" destination="Onj-Sr-xpc" id="87F-O2-ctg"/>
+                        <outlet property="objectiveTextView" destination="Plw-c2-tj6" id="NMu-Of-bPJ"/>
                         <outlet property="photoView" destination="vEu-EF-NzR" id="wLB-or-RlE"/>
+                        <outlet property="projectButton" destination="nDw-fy-aOJ" id="31F-du-bIn"/>
+                        <outlet property="skillButton" destination="DTl-Fm-gMz" id="oub-DP-wb9"/>
+                        <outlet property="workButton" destination="xPN-EI-WDi" id="g8z-yO-mW7"/>
+                        <outlet property="yearOfExpTextField" destination="SA5-8z-Riz" id="1Of-GQ-qJa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ott-Y6-F1g" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <exit id="e2v-iz-qnb" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="800.00000000000011" y="97.767857142857139"/>
         </scene>
+        <!--Title-->
+        <scene sceneID="iGH-RN-wgV">
+            <objects>
+                <tableViewController id="C1i-Sc-TG0" customClass="DetailTableViewController" customModule="resume" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="Blg-1a-axu">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Bod-ds-Cqg">
+                                <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Bod-ds-Cqg" id="n9Y-wo-tDz">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="Y4C-tc-VZM" kind="show" identifier="toDetailEditing" id="SqW-c5-NLc"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="C1i-Sc-TG0" id="rHT-za-eAA"/>
+                            <outlet property="delegate" destination="C1i-Sc-TG0" id="Ruv-7f-i3q"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Title" id="3SU-tM-g3g">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="SZL-dW-N3Q">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="TyU-tK-wYF">
+                                <rect key="frame" x="302" y="11" width="92" height="34.5"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Add"/>
+                                <connections>
+                                    <action selector="addItem:" destination="LQ4-Yr-59H" eventType="touchUpInside" id="m7x-kq-VD5"/>
+                                    <action selector="addItem:" destination="C1i-Sc-TG0" eventType="touchUpInside" id="zvb-0V-dsG"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="Blg-1a-axu" id="j9R-8Q-OYn"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fnv-pL-s5P" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="LQ4-Yr-59H" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="2735" y="98"/>
+        </scene>
+        <!--Detail View Controller-->
+        <scene sceneID="LA1-v8-2Em">
+            <objects>
+                <viewController id="Y4C-tc-VZM" customClass="DetailViewController" customModule="resume" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="60N-Dn-FmY">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="EZ9-4c-pDf"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="2Te-Ea-CmJ"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IPS-uD-59D" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3620" y="98"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="CiC-dU-C2i">
+            <objects>
+                <navigationController id="iFI-YB-AKo" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="FaN-QH-ofz"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="oHA-9P-i0m">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="C1i-Sc-TG0" kind="relationship" relationship="rootViewController" id="U6u-t8-xxx"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VqI-pT-8Za" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1842" y="98"/>
+        </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="WsT-Ft-o2t"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

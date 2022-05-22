@@ -15,6 +15,8 @@
 		12074C282836AF3E00BC5797 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12074C262836AF3E00BC5797 /* LaunchScreen.storyboard */; };
 		12074C332836AF3E00BC5797 /* resumeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12074C322836AF3E00BC5797 /* resumeTests.swift */; };
 		1207B6352838AACB00B98FFC /* ImageSLHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1207B6342838AACB00B98FFC /* ImageSLHandler.swift */; };
+		12F42988283AA9D400F267D9 /* DetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F42987283AA9D400F267D9 /* DetailTableViewController.swift */; };
+		12F4298A283AA9DF00F267D9 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F42989283AA9DF00F267D9 /* DetailViewController.swift */; };
 		12FE9474283968BB0045F830 /* ResumeSLHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FE9473283968BB0045F830 /* ResumeSLHandler.swift */; };
 		12FE9476283968D80045F830 /* ResumeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FE9475283968D80045F830 /* ResumeModel.swift */; };
 		12FE94782839B8600045F830 /* EditController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FE94772839B8600045F830 /* EditController.swift */; };
@@ -42,6 +44,8 @@
 		12074C2E2836AF3E00BC5797 /* resumeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = resumeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		12074C322836AF3E00BC5797 /* resumeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = resumeTests.swift; sourceTree = "<group>"; };
 		1207B6342838AACB00B98FFC /* ImageSLHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSLHandler.swift; sourceTree = "<group>"; };
+		12F42987283AA9D400F267D9 /* DetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewController.swift; sourceTree = "<group>"; };
+		12F42989283AA9DF00F267D9 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		12FE9473283968BB0045F830 /* ResumeSLHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResumeSLHandler.swift; sourceTree = "<group>"; };
 		12FE9475283968D80045F830 /* ResumeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResumeModel.swift; sourceTree = "<group>"; };
 		12FE94772839B8600045F830 /* EditController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditController.swift; sourceTree = "<group>"; };
@@ -90,6 +94,8 @@
 				12074C1D2836AF3C00BC5797 /* SceneDelegate.swift */,
 				12074C1F2836AF3C00BC5797 /* ViewController.swift */,
 				12FE94772839B8600045F830 /* EditController.swift */,
+				12F42987283AA9D400F267D9 /* DetailTableViewController.swift */,
+				12F42989283AA9DF00F267D9 /* DetailViewController.swift */,
 				1207B6342838AACB00B98FFC /* ImageSLHandler.swift */,
 				12FE9473283968BB0045F830 /* ResumeSLHandler.swift */,
 				12FE9475283968D80045F830 /* ResumeModel.swift */,
@@ -210,10 +216,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12F4298A283AA9DF00F267D9 /* DetailViewController.swift in Sources */,
 				12FE94782839B8600045F830 /* EditController.swift in Sources */,
 				12074C202836AF3C00BC5797 /* ViewController.swift in Sources */,
 				12FE9474283968BB0045F830 /* ResumeSLHandler.swift in Sources */,
 				12074C1C2836AF3C00BC5797 /* AppDelegate.swift in Sources */,
+				12F42988283AA9D400F267D9 /* DetailTableViewController.swift in Sources */,
 				12074C1E2836AF3C00BC5797 /* SceneDelegate.swift in Sources */,
 				12FE9476283968D80045F830 /* ResumeModel.swift in Sources */,
 				1207B6352838AACB00B98FFC /* ImageSLHandler.swift in Sources */,

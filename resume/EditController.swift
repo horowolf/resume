@@ -11,6 +11,15 @@ class EditController: UIViewController {
     var resume: ResumeModel?
     
     @IBOutlet weak var photoView: UIImageView!
+    @IBOutlet weak var mobileTextField: UITextField!
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var addressTextField: UITextField!
+    @IBOutlet weak var objectiveTextView: UITextView!
+    @IBOutlet weak var yearOfExpTextField: UITextField!
+    @IBOutlet weak var workButton: UIButton!
+    @IBOutlet weak var skillButton: UIButton!
+    @IBOutlet weak var educationButton: UIButton!
+    @IBOutlet weak var projectButton: UIButton!
     
     
     override func viewDidLoad() {
@@ -24,6 +33,36 @@ class EditController: UIViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        reloadView()
+    }
+    
+    func reloadView() {
+        guard let resume = resume else {
+            return
+        }
+        self.mobileTextField.text = resume.mobile
+        self.emailTextField.text = resume.email
+        self.addressTextField.text = resume.address
+        self.objectiveTextView.text = resume.objective
+        self.yearOfExpTextField.text = "\(resume.yearOfExperience)"
+        self.workButton.setTitle("\(resume.workSummary.count) work record\(resume.workSummary.count > 1 ? "s" : "")", for: .normal)
+        self.skillButton.setTitle("\(resume.skills.count) skill\(resume.skills.count > 1 ? "s" : "")", for: .normal)
+        self.educationButton.setTitle("\(resume.education.count) education record\(resume.education.count > 1 ? "s" : "")", for: .normal)
+        self.projectButton.setTitle("\(resume.projects.count) project\(resume.projects.count > 1 ? "s" : "")", for: .normal)
+    }
+    
+    @IBAction func saveReusme(_ sender: Any) {
+        if let resume = resume {
+            Task {
+                await ResumeSLHandler().save(resume)
+            }
+        }
+    }
+    
+    @IBAction func backToResume(_ sender: Any) {
+        self.dismiss(animated: true)
+    }
     
     @IBAction func pickImage(_ sender: Any) {
         let controller = UIImagePickerController()
@@ -32,7 +71,43 @@ class EditController: UIViewController {
         controller.delegate = self
     }
     
-    @IBAction override func unwind(for unwindSegue: UIStoryboardSegue, towards subsequentVC: UIViewController) {}
+    
+    @IBAction func addWork(_ sender: Any) {
+        performSegue(withIdentifier: "toWorkSummary", sender: nil)
+    }
+    
+    @IBAction func addSkill(_ sender: Any) {
+        performSegue(withIdentifier: "toSkill", sender: nil)
+    }
+    
+    @IBAction func addEducation(_ sender: Any) {
+        performSegue(withIdentifier: "toEducation", sender: nil)
+    }
+    
+    @IBAction func addProject(_ sender: Any) {
+        performSegue(withIdentifier: "toProject", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let navi = segue.destination as? UINavigationController,
+           let tableVC = navi.viewControllers.first as? DetailTableViewController,
+           let resume = resume {
+            tableVC.parentVC = self
+            if segue.identifier == "toWorkSummary" {
+                tableVC.tableType = .work
+                tableVC.dataRow = resume.workSummary
+            } else if segue.identifier == "toSkill" {
+                tableVC.tableType = .skill
+                tableVC.dataRow = resume.skills
+            } else if segue.identifier == "toEducation" {
+                tableVC.tableType = .education
+                tableVC.dataRow = resume.education
+            } else if segue.identifier == "toProject" {
+                tableVC.tableType = .project
+                tableVC.dataRow = resume.projects
+            }
+        }
+    }
 }
 
 extension EditController: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
