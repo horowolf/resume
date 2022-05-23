@@ -31,6 +31,11 @@ class EditController: UIViewController {
             photoView.image = UIImage(named: "noimage_png")
         }
         
+        mobileTextField.addTarget(self, action: #selector(syncTextChanges), for: .editingDidEnd)
+        emailTextField.addTarget(self, action: #selector(syncTextChanges), for: .editingDidEnd)
+        addressTextField.addTarget(self, action: #selector(syncTextChanges), for: .editingDidEnd)
+        objectiveTextView.delegate = self
+        yearOfExpTextField.addTarget(self, action: #selector(syncTextChanges), for: .editingDidEnd)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -41,6 +46,13 @@ class EditController: UIViewController {
         guard let resume = resume else {
             return
         }
+        
+        Task {
+            if let loadedImage = await ImageSLHandler().loadFrom(resume.photoName) {
+                photoView.image = loadedImage
+            }
+        }
+        
         self.mobileTextField.text = resume.mobile
         self.emailTextField.text = resume.email
         self.addressTextField.text = resume.address
@@ -50,6 +62,15 @@ class EditController: UIViewController {
         self.skillButton.setTitle("\(resume.skills.count) skill\(resume.skills.count > 1 ? "s" : "")", for: .normal)
         self.educationButton.setTitle("\(resume.education.count) education record\(resume.education.count > 1 ? "s" : "")", for: .normal)
         self.projectButton.setTitle("\(resume.projects.count) project\(resume.projects.count > 1 ? "s" : "")", for: .normal)
+    }
+    
+    @objc
+    func syncTextChanges() {
+        resume?.mobile = mobileTextField.text ?? ""
+        resume?.email = emailTextField.text ?? ""
+        resume?.address = addressTextField.text ?? ""
+        resume?.objective = objectiveTextView.text
+        resume?.yearOfExperience = Int(yearOfExpTextField.text ?? "0") ?? 0
     }
     
     @IBAction func saveReusme(_ sender: Any) {
@@ -134,5 +155,11 @@ extension EditController: UIImagePickerControllerDelegate & UINavigationControll
             present(controller, animated: true, completion: nil)
         }
         picker.dismiss(animated: true, completion: nil)
+    }
+}
+
+extension EditController: UITextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
+        syncTextChanges()
     }
 }

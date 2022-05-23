@@ -48,7 +48,7 @@
                                         </constraints>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ad1-PN-RKp">
-                                        <rect key="frame" x="0.0" y="248" width="414" height="149"/>
+                                        <rect key="frame" x="0.0" y="248" width="414" height="518"/>
                                     </stackView>
                                 </subviews>
                                 <constraints>
@@ -56,7 +56,7 @@
                                     <constraint firstItem="bkO-ee-pCd" firstAttribute="centerX" secondItem="l1J-S5-mQp" secondAttribute="centerX" id="3m6-JC-vH8"/>
                                     <constraint firstItem="ad1-PN-RKp" firstAttribute="top" secondItem="bkO-ee-pCd" secondAttribute="bottom" constant="8" symbolic="YES" id="6GD-FT-t2K"/>
                                     <constraint firstItem="ad1-PN-RKp" firstAttribute="leading" secondItem="l1J-S5-mQp" secondAttribute="leading" id="ARw-89-I07"/>
-                                    <constraint firstItem="eNZ-6e-N3J" firstAttribute="bottom" secondItem="ad1-PN-RKp" secondAttribute="bottom" constant="369" id="aTo-g2-neN"/>
+                                    <constraint firstItem="eNZ-6e-N3J" firstAttribute="bottom" secondItem="ad1-PN-RKp" secondAttribute="bottom" id="aTo-g2-neN"/>
                                     <constraint firstItem="bkO-ee-pCd" firstAttribute="centerX" secondItem="ad1-PN-RKp" secondAttribute="centerX" id="dC2-QX-Mtx"/>
                                     <constraint firstItem="bkO-ee-pCd" firstAttribute="top" secondItem="l1J-S5-mQp" secondAttribute="top" id="pk3-Ci-KVm"/>
                                     <constraint firstItem="bkO-ee-pCd" firstAttribute="leading" secondItem="eNZ-6e-N3J" secondAttribute="leading" constant="87" id="qtE-06-t12"/>
@@ -81,6 +81,7 @@
                     <connections>
                         <outlet property="image" destination="bkO-ee-pCd" id="ilS-z1-eGg"/>
                         <outlet property="scrollView" destination="l1J-S5-mQp" id="OKu-pG-2f7"/>
+                        <outlet property="stackView" destination="ad1-PN-RKp" id="D5h-Px-1En"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -216,7 +217,7 @@
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Plw-c2-tj6">
                                 <rect key="frame" x="196" y="392" width="198" height="72"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" systemColor="systemGray5Color"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="72" id="Jbr-V9-iIV"/>
                                 </constraints>
@@ -436,6 +437,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray5Color">
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
